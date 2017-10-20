@@ -2,6 +2,8 @@ package cn.demo.service1.controller;
 
 import cn.demo.AbstractController;
 import cn.demo.service1.client.Service0Client;
+import cn.demo.service1.client.Service2Client;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,6 +88,9 @@ public class Service1Controller extends AbstractController {
 
     @Autowired
     Service0Client service0Client;
+    
+    @Autowired
+    private Service2Client service2Client;
 
     @GetMapping("/test/{sleepSec}")
     public String test(
@@ -113,5 +118,10 @@ public class Service1Controller extends AbstractController {
 
         System.out.println(asd.toString());
         return service0Client.user(asd);
+    }
+    
+    @GetMapping("getResult")
+    public String getResult() {
+    		return service2Client.getResult();
     }
 }
