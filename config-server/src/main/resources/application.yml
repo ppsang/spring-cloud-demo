@@ -7,8 +7,12 @@ spring:
     config:
       server:
         git:
-          uri: file:///${user.home}/config-repo
-          searchPaths: '{application}'  #搜索各个以服务名命名的文件夹下的所有yml
+          # uri: file:///${user.home}/config-repo
+          uri: https://github.com/ppsang/SpringcloudConfig
+          searchPaths: respo
+          label: master
+          # searchPaths: '{application}'  #搜索各个以服务名命名的文件夹下的所有yml
+          # 支持label(分支名称) username(访问git仓库的用户名) password(访问git仓库的用户密码)
 eureka:
   instance:
     hostname: localhost

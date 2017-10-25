@@ -11,4 +11,4 @@ zuul:
   routes:
     service0: /service/0/**
     service1: /service/1/**
-
+    service2: /service/2/**
