@@ -1,7 +1,14 @@
 package cn.demo.service0.controller;
 
+import cn.g2link.storage.api.IStorageHandler;
+import cn.g2link.storage.common.dto.StorageInputDTO;
+import cn.g2link.storage.common.dto.StorageOutputDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -86,6 +93,9 @@ public class Service0Controller {
      */
     int count = 0;
 
+    @Autowired
+    private IStorageHandler storageHandler;
+
     @GetMapping("user/{userId}/{sleepSec}")
     String user(
             @PathVariable String userId,
@@ -95,6 +105,12 @@ public class Service0Controller {
             System.out.println("hello:" + userId);
             count++;
             TimeUnit.SECONDS.sleep(sleepSec - count);
+
+            InputStream is = new FileInputStream(new File("/Users/g2/Downloads/874aa55c0fd12aefd4b924a13d30de38.jpg"));
+
+            StorageInputDTO inputDTO = StorageInputDTO.getBuilder().setInputStream(is).setFileName("aaa.jpg").setBucketName("ucenter-test").builder();
+            StorageOutputDTO outputDTO = storageHandler.putObject(inputDTO);
+            System.err.println(outputDTO.getOssUrl());
             return "hello:" + userId;
         } catch (Exception e) {
             e.printStackTrace();

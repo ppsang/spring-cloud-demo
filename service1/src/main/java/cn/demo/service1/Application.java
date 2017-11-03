@@ -15,11 +15,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @Description:
  */
 @SpringBootApplication(scanBasePackages = "cn.demo.service1")
-@EnableFeignClients
+@EnableFeignClients // rpc 调用
 @EnableWebMvc
-@EnableEurekaClient
-@EnableCircuitBreaker
-@EnableHystrixDashboard
+@EnableEurekaClient // 开启服务注册与发现
+@EnableCircuitBreaker // 断路器
+@EnableHystrixDashboard // 服务降级 服务熔断 线程隔离 请求缓存 请求合并 服务监控
 public class Application {
 
     public static void main(String[] args) {
